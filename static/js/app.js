@@ -29,19 +29,59 @@ filterButton.on("click", function() {
     d3.selectAll("td").remove()
 
     // Using d3.select to find the datetime DOM element in the html
-    var inputElement = d3.select("#datetime");
+    var inputElementdatetime = d3.select("#datetime");
+    var inputElementcity = d3.select("#city");
+    var inputElementstate = d3.select("#state");
+    var inputElementcountry = d3.select("#country");
+    var inputElementshape = d3.select("#shape");
 
     // The user's search query
-    var inputValue = inputElement.property("value");
+    var inputValuedatetime = inputElementdatetime.property("value");
+    var inputValuecity = inputElementcity.property("value");
+    var inputValuestate = inputElementstate.property("value");
+    var inputValuecountry = inputElementcountry.property("value");
+    var inputValueshape = inputElementshape.property("value");
 
     // Filters data to entries matching the search query inputValue
-    var filteredData = sightings.filter(sighting => sighting.datetime === inputValue);
+    var filteredDatadatetime = sightings.filter(sighting => sighting.datetime === inputValuedatetime);
+    var filteredDatacity = sightings.filter(sighting => sighting.city === inputValuecity);
+    var filteredDatastate = sightings.filter(sighting => sighting.state === inputValuestate);
+    var filteredDatacountry = sightings.filter(sighting => sighting.country === inputValuecountry);
+    var filteredDatashape = sightings.filter(sighting => sighting.shape === inputValueshape);
 
     // Using d3.select to find the tbody DOM element in the html, echoes the initial/default tbody variable
     var tbody = d3.select("tbody");
 
     // For every data in tableData, a forEach() method that appends both table row and data with the now filtered value(s)
-    filteredData.forEach((filteredSightings) => {
+    filteredDatadatetime.forEach((filteredSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(filteredSightings).forEach(([key, value]) =>{
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+    filteredDatacity.forEach((filteredSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(filteredSightings).forEach(([key, value]) =>{
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+    filteredDatastate.forEach((filteredSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(filteredSightings).forEach(([key, value]) =>{
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+    filteredDatacountry.forEach((filteredSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(filteredSightings).forEach(([key, value]) =>{
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+    filteredDatashape.forEach((filteredSightings) => {
         var row = tbody.append("tr");
         Object.entries(filteredSightings).forEach(([key, value]) =>{
             var cell = tbody.append("td");
@@ -49,3 +89,5 @@ filterButton.on("click", function() {
         });
     });
 });
+
+// Has a function for filtering, uses ".this"
