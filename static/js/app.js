@@ -20,6 +20,22 @@ tableData.forEach((entry) => {
 // Defining variables for now filtered data as sightings and the filter button
 var sightings = data;
 var filterButton = d3.select("#filter-btn");
+var clearButton = d3.select("#clear-btn");
+
+// Creates the clear function on click
+clearButton.on("click", function() {
+    // Prevents reloading the page, except kept here for illustrative purposes - functionally want the page to reload
+    // d3.event.preventDefault();
+    
+    // Repopulates the data
+    tableData.forEach((entry) => {
+        var row = tbody.append("tr");
+        Object.entries(entry).forEach(([key, value]) => {
+            var cell = tbody.append("td");
+            cell.text(value);
+        });
+    });
+});
 
 // Creates the filter function on click
 filterButton.on("click", function() {
